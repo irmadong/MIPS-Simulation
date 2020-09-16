@@ -1,0 +1,18 @@
+add	$10, $8, $9   # add 0x81 (129) to 0x16 (22) should give 151 (0x97)
+add     $12, $11, $12	# add 0x145 (325) to 0xfffffe13 (-493) to get 0xffffff58 (-168)
+sub     $14, $13, $14  # compute 0xffffffe7 (-25) - 0xffffffd8 (-40) to get 15 0xf
+addi    $15, $15, 0xfed4  #add 0x12d (301) to 0xfed4 (when sign extended, -300)
+slt     $16, $16, $0     #set $16 to 1 if 0xffffffe4 (-28) < 0
+slt     $17, $0, $0	#set $17 to 1 if 0 < 0
+lw	$18, -8($19)  #place 0x12345678 into $18 ($19 contains 0x1000004c)
+lw      $19, 0($19)   #place 0x11223344 into $19 	
+sw 	$18, 4($19)   #place 0x12345678 into location 0x10000050
+sw      $19, -12($19) #place 0x11223344 into location 0x10000040
+j target1	
+add	$3, $4, $8
+target2: addi $1, $1, -1
+beq $0, $20, target3	
+target1: sub $0, $0, $20 # $20 gets value 0
+j target2 
+target3: add $22, $0, $0,
+	
